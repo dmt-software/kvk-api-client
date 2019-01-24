@@ -5,6 +5,10 @@
         {
             "name": "Bas de Mes",
             "email": "bas@dmt-software.nl"
+        },
+        {
+            "name": "Merbaum",
+            "email": "merbaum@merbaum.nl"
         }
     ],
     "type": "library",
