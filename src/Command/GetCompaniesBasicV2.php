@@ -2,7 +2,7 @@
 
 namespace DMT\KvK\Api\Command;
 
-class GetCompaniesBasicV2
+class GetCompaniesBasicV2 implements CommandInterface
 {
     /**
      * KvK number, identifying number for a registration in the Netherlands Business Register. Consists of 8 digits
