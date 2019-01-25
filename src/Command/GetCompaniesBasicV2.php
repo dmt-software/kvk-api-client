@@ -218,7 +218,7 @@ class GetCompaniesBasicV2
      */
     public function setPostalCode(string $postalCode): void
     {
-        $this->postalCode = $postalCode;
+        $this->postalCode = strtoupper(preg_replace('~\s~', '', $postalCode));
     }
 
     /**
