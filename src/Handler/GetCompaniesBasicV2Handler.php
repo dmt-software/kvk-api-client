@@ -3,8 +3,8 @@
 namespace DMT\KvK\Api\Handler;
 
 use DMT\KvK\Api\Command\GetCompaniesBasicV2;
-use DMT\Kvk\Api\Model\CompanyBasicV2ResultData;
-use DMT\Kvk\Api\Model\ResultData;
+use DMT\KvK\Api\Model\CompanyBasicV2ResultData;
+use DMT\KvK\Api\Model\ResultData;
 use GuzzleHttp\Client;
 use JMS\Serializer\Serializer;
 
@@ -43,7 +43,7 @@ class GetCompaniesBasicV2Handler
                 'http_errors' => true
             ]
         );
-die($response->getBody()->getContents());
-        return $this->serializer->deserialize($response->getBody()->getContents(), CompanyBasicV2ResultData::class, 'json');
+
+        return $this->serializer->deserialize($response->getBody(), CompanyBasicV2ResultData::class, 'json');
     }
 }

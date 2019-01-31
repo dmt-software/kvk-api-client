@@ -3,7 +3,7 @@
 namespace DMT\KvK\Api;
 
 use DMT\KvK\Api\Command\CommandInterface;
-use DMT\Kvk\Api\Model\ResultData;
+use DMT\KvK\Api\Model\ResultData;
 use League\Tactician\CommandBus;
 
 class Client

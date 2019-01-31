@@ -2,10 +2,14 @@
 
 namespace DMT\KvK\Api\Command;
 
+use Symfony\Component\Validator\Constraints as Assert;
+
 class GetCompaniesBasicV2 implements CommandInterface
 {
     /**
      * KvK number, identifying number for a registration in the Netherlands Business Register. Consists of 8 digits
+     *
+     * @Assert\Regex(pattern="~^\d{8}$~", message="invalid kvkNumber given")
      *
      * @var string
      */
@@ -14,12 +18,16 @@ class GetCompaniesBasicV2 implements CommandInterface
     /**
      * Branch number (Vestigingsnummer), identifying number of a branch. Consists of 12 digits
      *
+     * @Assert\Regex(pattern="~^\d{12}$~", message="invalid branchNumber given")
+     *
      * @var string
      */
     protected $branchNumber;
 
     /**
      * RSIN is an identification number for legal entities and partnerships. Consist of only digits
+     *
+     * @Assert\Regex(pattern="~^\d+$~", message="invalid rsin given")
      *
      * @var string
      */
@@ -41,6 +49,8 @@ class GetCompaniesBasicV2 implements CommandInterface
 
     /**
      * Postal code or ZIP code, example 1000AA
+     *
+     * @Assert\Regex(pattern="~^[1-9]\d{3}[A-Z]$~", message="invalid postalCode given")
      *
      * @var string
      */

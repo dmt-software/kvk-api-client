@@ -1,6 +1,6 @@
 <?php
 
-namespace DMT\Kvk\Api\Model;
+namespace DMT\KvK\Api\Model;
 
 class CompanySearchV2TradeNames
 {
