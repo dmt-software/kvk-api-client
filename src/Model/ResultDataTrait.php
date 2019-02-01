@@ -55,16 +55,6 @@ trait ResultDataTrait
     protected $query;
 
     /**
-     * @return array
-     */
-    abstract public function getItems(): array;
-
-    /**
-     * @param array $items
-     */
-    abstract public function setItems(array $items): void;
-
-    /**
      * @return int
      */
     public function getItemsPerPage(): int

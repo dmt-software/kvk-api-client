@@ -3,7 +3,7 @@
 namespace DMT\KvK\Api;
 
 use DMT\KvK\Api\Command\CommandInterface;
-use DMT\KvK\Api\Model\ResultData;
+use DMT\KvK\Api\Model\ResultDataInterface;
 use League\Tactician\CommandBus;
 
 class Client
@@ -24,9 +24,9 @@ class Client
      * Execute the command
      *
      * @param CommandInterface $command
-     * @return ResultData
+     * @return ResultDataInterface
      */
-    public function execute(CommandInterface $command): ResultData
+    public function execute(CommandInterface $command): ResultDataInterface
     {
         return $this->commandBus->handle($command);
     }

@@ -9,7 +9,7 @@ use JMS\Serializer\Annotation as JMS;
  *
  * @JMS\AccessType("public_method")
  */
-class CompanyBasicV2ResultData
+class CompanyBasicV2ResultData implements ResultDataInterface
 {
     use ResultDataTrait;
 
