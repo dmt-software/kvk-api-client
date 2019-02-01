@@ -1,0 +1,19 @@
+DMT\KvK\Api\Model\CompanySearchV2TradeNames:
+  access_type: public_method
+  properties:
+    businessName:
+      type: string
+    shortBusinessName:
+      type: string
+    currentTradeNames:
+      type: array<string>
+    formerTradeNames:
+      type: array<string>
+    currentStatutoryNames:
+      type: array<string>
+    formerStatutoryNames:
+      type: array<string>
+    currentNames:
+      type: array<string>
+    formerNames:
+      type: array<string>

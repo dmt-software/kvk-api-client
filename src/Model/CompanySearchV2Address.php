@@ -2,27 +2,59 @@
 
 namespace DMT\KvK\Api\Model;
 
+use JMS\Serializer\Annotation as JMS;
+
 class CompanySearchV2Address
 {
-    /** @var string */
+    /**
+     * The address type.
+     *
+     * @JMS\Type("string")
+     *
+     * @var string
+     */
     protected $type;
 
-    /** @var string */
+    /**
+     * @JMS\Type("string")
+     *
+     * @var string
+     */
     protected $street;
 
-    /** @var string */
+    /**
+     * @JMS\Type("string")
+     *
+     * @var string
+     */
     protected $houseNumber;
 
-    /** @var string */
+    /**
+     * @JMS\Type("string")
+     *
+     * @var string
+     */
     protected $houseNumberAddition;
 
-    /** @var string */
+    /**
+     * @JMS\Type("string")
+     *
+     * @var string
+     */
     protected $postalCode;
 
-    /** @var string */
+    /**
+     * @JMS\Type("string")
+     *
+     * @var string
+     */
     protected $city;
 
-    /** @var string */
+    /**
+     * @JMS\Type("string")
+     *
+     * @var string
+     */
     protected $country;
 
     /**

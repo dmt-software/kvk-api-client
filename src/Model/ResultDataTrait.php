@@ -2,32 +2,38 @@
 
 namespace DMT\KvK\Api\Model;
 
-class ResultData
+use JMS\Serializer\Annotation as JMS;
+
+trait ResultDataTrait
 {
     /**
      * Amount of search results per page used for the query
      *
-     * @var integer
+     * @JMS\Type("int")
+     * @var int
      */
     protected $itemsPerPage;
 
     /**
      * The current page of the results
      *
-     * @var integer
+     * @JMS\Type("int")
+     * @var int
      */
     protected $startPage;
 
     /**
      * Total amount of results spread over multiple pages
      *
-     * @var integer
+     * @JMS\Type("int")
+     * @var int
      */
     protected $totalItems;
 
     /**
      * Link to next set of ItemsPerPage result items
      *
+     * @JMS\Type("string")
      * @var string
      */
     protected $nextLink;
@@ -35,6 +41,7 @@ class ResultData
     /**
      * Link to previous set of ItemsPerPage result items
      *
+     * @JMS\Type("string")
      * @var string
      */
     protected $previousLink;
@@ -42,16 +49,20 @@ class ResultData
     /**
      * Original query
      *
+     * @JMS\Type("string")
      * @var string
      */
     protected $query;
 
     /**
-     * Actual search results
-     *
-     * @var array
+     * @return array
      */
-    protected $items;
+    abstract public function getItems(): array;
+
+    /**
+     * @param array $items
+     */
+    abstract public function setItems(array $items): void;
 
     /**
      * @return int
@@ -147,21 +158,5 @@ class ResultData
     public function setQuery(string $query): void
     {
         $this->query = $query;
-    }
-
-    /**
-     * @return array
-     */
-    public function getItems(): array
-    {
-        return $this->items;
-    }
-
-    /**
-     * @param array $items
-     */
-    public function setItems(array $items): void
-    {
-        $this->items = $items;
     }
 }

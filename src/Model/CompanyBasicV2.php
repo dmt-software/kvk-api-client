@@ -45,7 +45,7 @@ class CompanyBasicV2
     /**
      * Indication the registry does not want to be contacted by third parties
      *
-     * @JMS\Accessor("getter": "hasNonMailingIndication")
+     * @JMS\Accessor(getter="hasNonMailingIndication")
      * @JMS\Type("bool")
      *
      * @var bool
@@ -55,7 +55,7 @@ class CompanyBasicV2
     /**
      * Indicates if the entry is registered
      *
-     * @JMS\Accessor("getter": "hasEntryInBusinessRegister")
+     * @JMS\Accessor(getter="hasEntryInBusinessRegister")
      * @JMS\Type("bool")
      *
      * @var bool
@@ -65,7 +65,7 @@ class CompanyBasicV2
     /**
      * Indication the registry is the legal entity
      *
-     * @JMS\Accessor("getter": "isLegalPerson")
+     * @JMS\Accessor(getter="isLegalPerson")
      * @JMS\Type("bool")
      *
      * @var bool
@@ -75,7 +75,7 @@ class CompanyBasicV2
     /**
      * Indication (true/false) as to whether this is a branch
      *
-     * @JMS\Accessor("getter": "isBranch")
+     * @JMS\Accessor(getter="isBranch")
      * @JMS\Type("bool")
      *
      * @var bool
@@ -85,7 +85,7 @@ class CompanyBasicV2
     /**
      * Indication (true/false) for the main branch
      *
-     * @JMS\Accessor("getter": "isMainBranch")
+     * @JMS\Accessor(getter="isMainBranch")
      * @JMS\Type("bool")
      *
      * @var bool

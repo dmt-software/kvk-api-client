@@ -5,7 +5,7 @@ namespace DMT\KvK\Api;
 use DMT\CommandBus\Validator\ValidationMiddleware;
 use DMT\KvK\Api\Command\GetCompaniesBasicV2;
 use DMT\KvK\Api\Handler\GetCompaniesBasicV2Handler;
-use DMT\KvK\Api\Request\UserKeyMiddleware;
+use DMT\KvK\Api\Request\AuthenticationMiddleware;
 use Doctrine\Common\Annotations\AnnotationException;
 use Doctrine\Common\Annotations\AnnotationRegistry;
 use GuzzleHttp\Handler\CurlHandler;
@@ -145,7 +145,7 @@ class ClientBuilder
         $stack->push(Middleware::httpErrors());
         $stack->push(
             Middleware::mapRequest(
-                new UserKeyMiddleware($this->userKey)
+                new AuthenticationMiddleware($this->userKey)
             )
         );
 

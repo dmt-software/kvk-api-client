@@ -2,30 +2,69 @@
 
 namespace DMT\KvK\Api\Model;
 
+use JMS\Serializer\Annotation as JMS;
+
+/**
+ * Class CompanySearchV2TradeNames
+ *
+ * The name(s) under which a company or a branch of a company operates.
+ */
 class CompanySearchV2TradeNames
 {
-    /** @var string */
+    /**
+     * @JMS\Type("string")
+     *
+     * @var string
+     */
     protected $businessName;
 
-    /** @var string */
+    /**
+     * @JMS\Type("string")
+     *
+     * @var string
+     */
     protected $shortBusinessName;
 
-    /** @var array */
+    /**
+     * @JMS\Type("array<string>")
+     *
+     * @var array
+     */
     protected $currentTradeNames;
 
-    /** @var array */
+    /**
+     * @JMS\Type("array<string>")
+     *
+     * @var array
+     */
     protected $formerTradeNames;
 
-    /** @var array */
+    /**
+     * @JMS\Type("array<string>")
+     *
+     * @var array
+     */
     protected $currentStatutoryNames;
 
-    /** @var array */
+    /**
+     * @JMS\Type("array<string>")
+     *
+     * @var array
+     */
     protected $formerStatutoryNames;
 
-    /** @var array */
+    /**
+     * @JMS\Type("array<string>")
+     *
+     * @var array
+     */
     protected $currentNames;
 
-    /** @var array */
+    /**
+     * @JMS\Type("array<string>")
+     *
+     * @var array
+     */
     protected $formerNames;
 
     /**

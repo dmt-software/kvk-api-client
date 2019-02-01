@@ -2,9 +2,10 @@
 
 namespace DMT\KvK\Api\Request;
 
+use DMT\KvK\Api\Exception\AuthenticationException;
 use Psr\Http\Message\RequestInterface;
 
-class UserKeyMiddleware
+class AuthenticationMiddleware
 {
     /** @var string */
     protected $userKey;
@@ -27,6 +28,10 @@ class UserKeyMiddleware
      */
     public function __invoke(RequestInterface $request): RequestInterface
     {
+        if (empty($this->userKey)) {
+            throw new AuthenticationException('No userKey for authentication given');
+        }
+
         parse_str($request->getUri()->getQuery(), $query);
 
         $query['user_key'] = $this->userKey;
