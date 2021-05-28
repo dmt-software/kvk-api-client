@@ -2,7 +2,7 @@
 
 namespace DMT\KvK\Api\Exception;
 
-interface ExceptionInterface
+interface Exception
 {
 
 }

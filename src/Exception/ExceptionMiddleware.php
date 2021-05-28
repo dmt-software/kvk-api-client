@@ -17,18 +17,18 @@ class ExceptionMiddleware implements Middleware
      * @param callable $next
      *
      * @return mixed
-     * @throws ExceptionInterface
+     * @throws Exception
      */
     public function execute($command, callable $next)
     {
         try {
             return $next($command);
-        } catch (ExceptionInterface $exception) {
+        } catch (Exception $exception) {
             throw $exception;
         } catch (ValidationException $exception) {
             throw new RequestException($exception->getMessage(), 0, $exception);
         } catch (ClientExceptionInterface $exception) {
-            throw new UnavailableException('Error in service request', 0, $exception);
+            throw new UnavailableException($exception->getMessage(), 0, $exception);
         } catch (SerializeException $exception) {
             throw new UnavailableException('Version mismatch, invalid JSON returned', 0, $exception);
         }

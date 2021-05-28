@@ -1,6 +1,6 @@
 <?php
 
-namespace DMT\KvK\Api\Handler;
+namespace DMT\KvK\Api\Http;
 
 /**
  * Interface HandlerInterface

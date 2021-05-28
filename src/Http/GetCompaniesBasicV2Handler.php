@@ -1,11 +1,11 @@
 <?php
 
-namespace DMT\KvK\Api\Handler;
+namespace DMT\KvK\Api\Http;
 
-use DMT\KvK\Api\Request\GetCompaniesBasicV2;
-use DMT\KvK\Api\Model\CompanyBasicV2ResultData;
-use DMT\KvK\Api\Model\ResultData;
-use GuzzleHttp\Client;
+use DMT\KvK\Api\Http\Request\GetCompaniesBasicV2;
+use DMT\KvK\Api\Http\Response\CompanyBasicV2ResultData;
+use DMT\KvK\Api\Http\Response\ResultData;
+use GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Uri;
 use JMS\Serializer\SerializerBuilder;
@@ -17,7 +17,7 @@ use Psr\Http\Client\ClientExceptionInterface;
  */
 class GetCompaniesBasicV2Handler implements HandlerInterface
 {
-    /** @var Client */
+    /** @var HttpClient */
     protected $client;
 
     /** @var SerializerInterface */
@@ -26,10 +26,10 @@ class GetCompaniesBasicV2Handler implements HandlerInterface
     /**
      * GetCompaniesBasicV2Handler constructor.
      *
-     * @param Client $client
+     * @param HttpClient $client
      * @param SerializerInterface|null $serializer
      */
-    public function __construct(Client $client, SerializerInterface $serializer = null)
+    public function __construct(HttpClient $client, SerializerInterface $serializer = null)
     {
         $this->client = $client;
         $this->serializer = $serializer ?? SerializerBuilder::create()->build();

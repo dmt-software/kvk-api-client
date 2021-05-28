@@ -23,7 +23,7 @@ class AuthenticationMiddlewareTest extends TestCase
     public function testApplyAuthenticationMiddleware(RequestInterface $request, string $userKey)
     {
         $middleware = new AuthenticationMiddleware($userKey);
-        $newRequest = $middleware->applyToRequest($request);
+        $newRequest = $middleware($request);
 
         parse_str($newRequest->getUri()->getQuery(), $queryArgs);
 
@@ -48,6 +48,6 @@ class AuthenticationMiddlewareTest extends TestCase
         $this->expectErrorMessage('No userKey for authentication given');
 
         $middleware = new AuthenticationMiddleware('');
-        $middleware->applyToRequest(new Request('GET', new Uri()));
+        $middleware(new Request('GET', new Uri()));
     }
 }

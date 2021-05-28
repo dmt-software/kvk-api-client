@@ -3,13 +3,14 @@
 namespace DMT\KvK\Api;
 
 use DMT\CommandBus\Validator\ValidationMiddleware;
-use DMT\KvK\Api\Request\RequestInterface;
-use DMT\KvK\Api\Request\GetCompaniesBasicV2;
-use DMT\KvK\Api\Handler\GetCompaniesBasicV2Handler;
-use DMT\KvK\Api\Handler\HandlerInterface;
+use DMT\KvK\Api\Http\Middleware\ExceptionMiddleware;
+use DMT\KvK\Api\Http\Request\RequestInterface;
+use DMT\KvK\Api\Http\Request\GetCompaniesBasicV2;
+use DMT\KvK\Api\Http\GetCompaniesBasicV2Handler;
+use DMT\KvK\Api\Http\HandlerInterface;
 use DMT\KvK\Api\Http\Middleware\AuthenticationMiddleware;
-use DMT\KvK\Api\Model\CompanyBasicV2ResultData;
-use DMT\KvK\Api\Model\ResultData;
+use DMT\KvK\Api\Http\Response\CompanyBasicV2ResultData;
+use DMT\KvK\Api\Http\Response\ResultData;
 use GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\Handler\CurlHandler;
 use GuzzleHttp\HandlerStack;
@@ -142,11 +143,9 @@ class Client
      */
     public function getHandler(string $command): HandlerInterface
     {
-        $authenticationMiddleware = new AuthenticationMiddleware($this->config->userKey);
-
         $stack = HandlerStack::create(new CurlHandler());
-        $stack->push(Middleware::mapRequest([$authenticationMiddleware, 'applyToRequest']));
-        $stack->push(Middleware::mapResponse([$authenticationMiddleware, 'checkResponse']));
+        $stack->push(Middleware::mapRequest(new AuthenticationMiddleware($this->config->userKey)));
+        $stack->push(Middleware::mapResponse(new ExceptionMiddleware()));
 
         $client = new HttpClient([
             'base_uri' => $this->config->baseUri,

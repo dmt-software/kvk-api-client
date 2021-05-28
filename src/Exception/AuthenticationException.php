@@ -2,7 +2,7 @@
 
 namespace DMT\KvK\Api\Exception;
 
-class AuthenticationException extends \RuntimeException implements ExceptionInterface
+class AuthenticationException extends \RuntimeException implements Exception
 {
 
 }

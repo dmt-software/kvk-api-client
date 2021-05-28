@@ -4,8 +4,8 @@ namespace DMT\Test\KvK\Api;
 
 use DMT\KvK\Api\Client;
 use DMT\KvK\Api\Config;
-use DMT\KvK\Api\Handler\GetCompaniesBasicV2Handler;
-use DMT\KvK\Api\Model\CompanyBasicV2ResultData;
+use DMT\KvK\Api\Http\GetCompaniesBasicV2Handler;
+use DMT\KvK\Api\Http\Response\CompanyBasicV2ResultData;
 use GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;

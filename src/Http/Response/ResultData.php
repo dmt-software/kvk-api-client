@@ -1,6 +1,6 @@
 <?php
 
-namespace DMT\KvK\Api\Model;
+namespace DMT\KvK\Api\Http\Response;
 
 /**
  * Interface ResultData

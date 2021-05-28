@@ -1,6 +1,6 @@
 <?php
 
-namespace DMT\KvK\Api\Request;
+namespace DMT\KvK\Api\Http\Request;
 
 use Symfony\Component\Validator\Constraints as Assert;
 

@@ -2,7 +2,7 @@
 
 namespace DMT\KvK\Api\Exception;
 
-class RequestException extends \RuntimeException implements ExceptionInterface
+class RequestException extends \RuntimeException implements Exception
 {
 
 }
