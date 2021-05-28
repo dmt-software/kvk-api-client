@@ -3,10 +3,13 @@
 namespace DMT\KvK\Api\Exception;
 
 use DMT\CommandBus\Validator\ValidationException;
-use GuzzleHttp\Exception\ClientException as HttpClientException;
 use JMS\Serializer\Exception\Exception as SerializeException;
 use League\Tactician\Middleware;
+use Psr\Http\Client\ClientExceptionInterface;
 
+/**
+ * Class ExceptionMiddleware
+ */
 class ExceptionMiddleware implements Middleware
 {
     /**
@@ -20,23 +23,14 @@ class ExceptionMiddleware implements Middleware
     {
         try {
             return $next($command);
+        } catch (ExceptionInterface $exception) {
+            throw $exception;
         } catch (ValidationException $exception) {
-            $message = 'Invalid command given';
-
-            if ($exception->getViolations()->count() === 1) {
-                $message = $exception->getViolations()->get(0)->getMessage();
-            }
-
-            throw new CommandException($message, 0, $exception);
-        } catch (HttpClientException $exception) {
-            if ($exception->hasResponse() && $exception->getResponse()->getStatusCode() === 403) {
-                throw new AuthenticationException('Authentication failed', 0, $exception);
-            }
-            throw new ClientException('Error in service request', 0, $exception);
+            throw new RequestException($exception->getMessage(), 0, $exception);
+        } catch (ClientExceptionInterface $exception) {
+            throw new UnavailableException('Error in service request', 0, $exception);
         } catch (SerializeException $exception) {
-            throw new ServerException('Version mismatch, invalid JSON returned', 0, $exception);
-        } catch (\Throwable $exception) {
-            throw new ServerException('Service unavailable', 0, $exception);
+            throw new UnavailableException('Version mismatch, invalid JSON returned', 0, $exception);
         }
     }
 }

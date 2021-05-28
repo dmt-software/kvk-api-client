@@ -6,10 +6,8 @@ use JMS\Serializer\Annotation as JMS;
 
 /**
  * Class CompanyBasicV2ResultData
- *
- * @JMS\AccessType("public_method")
  */
-class CompanyBasicV2ResultData implements ResultDataInterface
+class CompanyBasicV2ResultData implements ResultData
 {
     use ResultDataTrait;
 
@@ -21,20 +19,4 @@ class CompanyBasicV2ResultData implements ResultDataInterface
      * @var CompanyBasicV2[]
      */
     protected $items;
-
-    /**
-     * @return mixed
-     */
-    public function getItems()
-    {
-        return $this->items;
-    }
-
-    /**
-     * @param mixed $items
-     */
-    public function setItems($items): void
-    {
-        $this->items = $items;
-    }
 }

@@ -1,10 +1,14 @@
 <?php
 
-namespace DMT\KvK\Api\Request;
+namespace DMT\KvK\Api\Http\Middleware;
 
 use DMT\KvK\Api\Exception\AuthenticationException;
 use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
 
+/**
+ * Class AuthenticationMiddleware
+ */
 class AuthenticationMiddleware
 {
     /** @var string */
@@ -26,7 +30,7 @@ class AuthenticationMiddleware
      * @param RequestInterface $request
      * @return RequestInterface
      */
-    public function __invoke(RequestInterface $request): RequestInterface
+    public function applyToRequest(RequestInterface $request): RequestInterface
     {
         if (empty($this->userKey)) {
             throw new AuthenticationException('No userKey for authentication given');
@@ -41,5 +45,20 @@ class AuthenticationMiddleware
                 http_build_query($query, null, '&', PHP_QUERY_RFC3986)
             )
         );
+    }
+
+    /**
+     * Check the response for authentication errors.
+     *
+     * @param ResponseInterface $response
+     * @return ResponseInterface
+     */
+    public function checkResponse(ResponseInterface $response): ResponseInterface
+    {
+        if ($response->getStatusCode() === 403) {
+            throw new AuthenticationException('Authentication failed');
+        }
+
+        return $response;
     }
 }

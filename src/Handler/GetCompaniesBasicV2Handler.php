@@ -2,30 +2,37 @@
 
 namespace DMT\KvK\Api\Handler;
 
-use DMT\KvK\Api\Command\GetCompaniesBasicV2;
+use DMT\KvK\Api\Request\GetCompaniesBasicV2;
 use DMT\KvK\Api\Model\CompanyBasicV2ResultData;
 use DMT\KvK\Api\Model\ResultData;
 use GuzzleHttp\Client;
-use JMS\Serializer\Serializer;
+use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Psr7\Uri;
+use JMS\Serializer\SerializerBuilder;
+use JMS\Serializer\SerializerInterface;
+use Psr\Http\Client\ClientExceptionInterface;
 
-class GetCompaniesBasicV2Handler
+/**
+ * Class GetCompaniesBasicV2Handler
+ */
+class GetCompaniesBasicV2Handler implements HandlerInterface
 {
     /** @var Client */
     protected $client;
 
-    /** @var Serializer */
+    /** @var SerializerInterface */
     protected $serializer;
 
     /**
      * GetCompaniesBasicV2Handler constructor.
      *
      * @param Client $client
-     * @param Serializer $serializer
+     * @param SerializerInterface|null $serializer
      */
-    public function __construct(Client $client, Serializer $serializer)
+    public function __construct(Client $client, SerializerInterface $serializer = null)
     {
         $this->client = $client;
-        $this->serializer = $serializer;
+        $this->serializer = $serializer ?? SerializerBuilder::create()->build();
     }
 
     /**
@@ -33,16 +40,18 @@ class GetCompaniesBasicV2Handler
      *
      * @param GetCompaniesBasicV2 $command
      * @return ResultData
+     * @throws ClientExceptionInterface
      */
     public function handle(GetCompaniesBasicV2 $command): ResultData
     {
-        $response = $this->client->get(
-            'https://api.kvk.nl/api/v2/search/companies',
-            [
-                'query' => $this->serializer->toArray($command),
-                'http_errors' => true
-            ]
+        $request = new Request(
+            'GET',
+            (new Uri('search/companies'))->withQuery(
+                http_build_query($this->serializer->toArray($command))
+            )
         );
+
+        $response = $this->client->sendRequest($request);
 
         return $this->serializer->deserialize($response->getBody(), CompanyBasicV2ResultData::class, 'json');
     }
