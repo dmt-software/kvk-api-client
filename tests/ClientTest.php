@@ -5,6 +5,8 @@ namespace DMT\Test\KvK\Api;
 use DMT\KvK\Api\Client;
 use DMT\KvK\Api\Config;
 use DMT\KvK\Api\Http\GetCompaniesBasicV2Handler;
+use DMT\KvK\Api\Http\Request\GetCompaniesBasicV2;
+use DMT\KvK\Api\Http\Request\RequestInterface;
 use DMT\KvK\Api\Http\Response\CompanyBasicV2ResultData;
 use GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\Handler\MockHandler;
@@ -39,6 +41,25 @@ class ClientTest extends TestCase
             CompanyBasicV2ResultData::class,
             $this->client->getCompaniesBasicV2('90000102')
         );
+    }
+
+    public function testProcess()
+    {
+        $this->assertInstanceOf(
+            CompanyBasicV2ResultData::class,
+            $this->client->process(new GetCompaniesBasicV2())
+        );
+    }
+
+    public function testProcessIllegalRequest()
+    {
+        $this->expectExceptionObject(new \InvalidArgumentException('Illegal command given'));
+
+        $mock = $this->getMockBuilder(RequestInterface::class)
+            ->getMockForAbstractClass();
+
+        $client = new Client(new Config(['userKey' => '1234/d']));
+        $client->process($mock);
     }
 
     public function getMockHandler(string $command)

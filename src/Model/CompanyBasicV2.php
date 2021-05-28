@@ -12,6 +12,7 @@ class CompanyBasicV2
     /**
      * KvK number, identifying number for a registration in the Netherlands Business Register. Consists of 8 digits
      *
+     * @JMS\SerializedName("kvkNumber")
      * @JMS\Type("string")
      *
      * @var string
@@ -21,6 +22,7 @@ class CompanyBasicV2
     /**
      * Branch number (Vestigingsnummer), identifying number of a branch. Consists of 12 digits
      *
+     * @JMS\SerializedName("branchNumber")
      * @JMS\Type("string")
      *
      * @var string
@@ -30,6 +32,7 @@ class CompanyBasicV2
     /**
      * RSIN is an identification number for legal entities and partnerships. Consist of only digits
      *
+     * @JMS\SerializedName("rsin")
      * @JMS\Type("string")
      *
      * @var string
@@ -39,6 +42,7 @@ class CompanyBasicV2
     /**
      * Trade names under which company or subsidiary operates
      *
+     * @JMS\SerializedName("tradeNames")
      * @JMS\Type("DMT\KvK\Api\Model\CompanySearchV2TradeNames")
      *
      * @var CompanySearchV2TradeNames
@@ -48,6 +52,7 @@ class CompanyBasicV2
     /**
      * Indication the registry does not want to be contacted by third parties
      *
+     * @JMS\SerializedName("hasNonMailingIndication")
      * @JMS\Type("bool")
      *
      * @var bool
@@ -57,6 +62,7 @@ class CompanyBasicV2
     /**
      * Indicates if the entry is registered
      *
+     * @JMS\SerializedName("hasEntryInBusinessRegister")
      * @JMS\Type("bool")
      *
      * @var bool
@@ -66,6 +72,7 @@ class CompanyBasicV2
     /**
      * Indication the registry is the legal entity
      *
+     * @JMS\SerializedName("isLegalPerson")
      * @JMS\Type("bool")
      *
      * @var bool
@@ -75,6 +82,7 @@ class CompanyBasicV2
     /**
      * Indication (true/false) as to whether this is a branch
      *
+     * @JMS\SerializedName("isBranch")
      * @JMS\Type("bool")
      *
      * @var bool
@@ -84,6 +92,7 @@ class CompanyBasicV2
     /**
      * Indication (true/false) for the main branch
      *
+     * @JMS\SerializedName("isMainBranch")
      * @JMS\Type("bool")
      *
      * @var bool
@@ -93,6 +102,7 @@ class CompanyBasicV2
     /**
      * The address for the registry. At most 1 address is returned
      *
+     * @JMS\SerializedName("addresses")
      * @JMS\Type("array<DMT\KvK\Api\Model\CompanySearchV2Address>")
      *
      * @var CompanySearchV2Address[]
@@ -102,6 +112,7 @@ class CompanyBasicV2
     /**
      * Returns websites belonging to the currently registered entity
      *
+     * @JMS\SerializedName("websites")
      * @JMS\Type("array<string>")
      *
      * @var array

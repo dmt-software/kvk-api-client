@@ -12,6 +12,7 @@ class CompanySearchV2Address
     /**
      * The address type.
      *
+     * @JMS\SerializedName("type")
      * @JMS\Type("string")
      *
      * @var string
@@ -19,6 +20,7 @@ class CompanySearchV2Address
     public $type;
 
     /**
+     * @JMS\SerializedName("street")
      * @JMS\Type("string")
      *
      * @var string
@@ -26,6 +28,7 @@ class CompanySearchV2Address
     public $street;
 
     /**
+     * @JMS\SerializedName("houseNumber")
      * @JMS\Type("string")
      *
      * @var string
@@ -33,6 +36,7 @@ class CompanySearchV2Address
     public $houseNumber;
 
     /**
+     * @JMS\SerializedName("houseNumberAddition")
      * @JMS\Type("string")
      *
      * @var string
@@ -40,6 +44,7 @@ class CompanySearchV2Address
     public $houseNumberAddition;
 
     /**
+     * @JMS\SerializedName("postalCode")
      * @JMS\Type("string")
      *
      * @var string
@@ -47,6 +52,7 @@ class CompanySearchV2Address
     public $postalCode;
 
     /**
+     * @JMS\SerializedName("city")
      * @JMS\Type("string")
      *
      * @var string
@@ -54,6 +60,7 @@ class CompanySearchV2Address
     public $city;
 
     /**
+     * @JMS\SerializedName("country")
      * @JMS\Type("string")
      *
      * @var string

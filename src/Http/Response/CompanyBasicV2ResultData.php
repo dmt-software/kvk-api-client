@@ -2,6 +2,7 @@
 
 namespace DMT\KvK\Api\Http\Response;
 
+use DMT\KvK\Api\Model\CompanyBasicV2;
 use JMS\Serializer\Annotation as JMS;
 
 /**
@@ -14,9 +15,10 @@ class CompanyBasicV2ResultData implements ResultData
     /**
      * Actual search results
      *
+     * @JMS\SerializedName("items")
      * @JMS\Type("array<DMT\KvK\Api\Model\CompanyBasicV2>")
      *
      * @var CompanyBasicV2[]
      */
-    protected $items;
+    public $items;
 }

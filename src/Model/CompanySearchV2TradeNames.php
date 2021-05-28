@@ -12,6 +12,7 @@ use JMS\Serializer\Annotation as JMS;
 class CompanySearchV2TradeNames
 {
     /**
+     * @JMS\SerializedName("businessName")
      * @JMS\Type("string")
      *
      * @var string
@@ -19,6 +20,7 @@ class CompanySearchV2TradeNames
     public $businessName;
 
     /**
+     * @JMS\SerializedName("shortBusinessName")
      * @JMS\Type("string")
      *
      * @var string
@@ -26,6 +28,7 @@ class CompanySearchV2TradeNames
     public $shortBusinessName;
 
     /**
+     * @JMS\SerializedName("currentTradeNames")
      * @JMS\Type("array<string>")
      *
      * @var array
@@ -33,6 +36,7 @@ class CompanySearchV2TradeNames
     public $currentTradeNames;
 
     /**
+     * @JMS\SerializedName("formerTradeNames")
      * @JMS\Type("array<string>")
      *
      * @var array
@@ -40,6 +44,7 @@ class CompanySearchV2TradeNames
     public $formerTradeNames;
 
     /**
+     * @JMS\SerializedName("currentStatutoryNames")
      * @JMS\Type("array<string>")
      *
      * @var array
@@ -47,6 +52,7 @@ class CompanySearchV2TradeNames
     public $currentStatutoryNames;
 
     /**
+     * @JMS\SerializedName("formerStatutoryNames")
      * @JMS\Type("array<string>")
      *
      * @var array
@@ -54,6 +60,7 @@ class CompanySearchV2TradeNames
     public $formerStatutoryNames;
 
     /**
+     * @JMS\SerializedName("currentNames")
      * @JMS\Type("array<string>")
      *
      * @var array
@@ -61,6 +68,7 @@ class CompanySearchV2TradeNames
     public $currentNames;
 
     /**
+     * @JMS\SerializedName("formerNames")
      * @JMS\Type("array<string>")
      *
      * @var array
