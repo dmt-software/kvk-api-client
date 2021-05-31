@@ -7,6 +7,9 @@ use DMT\CommandBus\Validator\ValidationMiddleware;
 use DMT\KvK\Api\Http\Request\GetCompaniesBasicV2;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * Class GetCompaniesBasicV2Test
+ */
 class GetCompaniesBasicV2Test extends TestCase
 {
     /**

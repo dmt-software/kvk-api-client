@@ -1,0 +1,75 @@
+{
+  "apiVersion": "2.0",
+  "meta": {},
+  "data": {
+    "itemsPerPage": 1,
+    "startPage": 1,
+    "totalItems": 2,
+    "nextLink": "https://api.kvk.nl/api/v2/testprofile/companies?kvkNumber=69599076&startPage=2",
+    "items": [
+      {
+        "kvkNumber": "69599076",
+        "branchNumber": "000038509474",
+        "rsin": "858311550",
+        "tradeNames": {
+          "businessName": "Test VOF Guus",
+          "shortBusinessName": "Test VOF Guus",
+          "currentTradeNames": [
+            "Test VOF Guus",
+            "Loterij-jager"
+          ],
+          "currentNames": [
+            "Test VOF Guus"
+          ]
+        },
+        "legalForm": "Vennootschap onder firma",
+        "businessActivities": [
+          {
+            "sbiCode": "1011",
+            "sbiCodeDescription": "Slachterijen (geen pluimvee-)",
+            "isMainSbi": true
+          }
+        ],
+        "hasEntryInBusinessRegister": true,
+        "hasCommercialActivities": true,
+        "hasNonMailingIndication": false,
+        "isLegalPerson": false,
+        "isBranch": true,
+        "isMainBranch": true,
+        "employees": 10,
+        "foundationDate": "20170108",
+        "registrationDate": "20170710",
+        "addresses": [
+          {
+            "type": "vestigingsadres",
+            "bagId": "0034010000034742",
+            "street": "Benny Goodmanstraat",
+            "houseNumber": "60",
+            "houseNumberAddition": "",
+            "postalCode": "1311RB",
+            "city": "Almere",
+            "country": "Nederland",
+            "gpsLatitude": 52.36832729159215,
+            "gpsLongitude": 5.184717376328456,
+            "rijksdriehoekX": 141209.036,
+            "rijksdriehoekY": 486735.164,
+            "rijksdriehoekZ": 0
+          },
+          {
+            "type": "correspondentieadres",
+            "bagId": "",
+            "street": "Postbus",
+            "houseNumber": "12491",
+            "houseNumberAddition": "",
+            "postalCode": "1100AL",
+            "city": "Amsterdam",
+            "country": "Nederland"
+          }
+        ],
+        "websites": [
+          "www.example.com"
+        ]
+      }
+    ]
+  }
+}

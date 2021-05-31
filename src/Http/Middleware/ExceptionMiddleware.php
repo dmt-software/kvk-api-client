@@ -2,7 +2,7 @@
 
 namespace DMT\KvK\Api\Http\Middleware;
 
-use DMT\KvK\Api\Exception\AuthenticationException;
+use DMT\KvK\Api\Exception\AuthorizationException;
 use DMT\KvK\Api\Exception\NotFoundException;
 use DMT\KvK\Api\Exception\ResponseException;
 use DMT\KvK\Api\Exception\UnavailableException;
@@ -27,8 +27,8 @@ class ExceptionMiddleware
             throw new NotFoundException('No results found');
         }
 
-        if ($response->getStatusCode() === 403) {
-            throw new AuthenticationException($response->getReasonPhrase());
+        if ($response->getStatusCode() === 401 || $response->getStatusCode() === 403) {
+            throw new AuthorizationException($response->getReasonPhrase());
         }
 
         if ($response->getStatusCode() >= 400) {

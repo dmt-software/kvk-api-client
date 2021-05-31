@@ -2,7 +2,7 @@
 
 namespace DMT\Test\KvK\Api\Http\Middleware;
 
-use DMT\KvK\Api\Exception\AuthenticationException;
+use DMT\KvK\Api\Exception\AuthorizationException;
 use DMT\KvK\Api\Http\Middleware\AuthenticationMiddleware;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Uri;
@@ -25,6 +25,20 @@ class AuthenticationMiddlewareTest extends TestCase
         $middleware = new AuthenticationMiddleware($userKey);
         $newRequest = $middleware($request);
 
+        $this->assertSame($userKey, $newRequest->getHeaderLine('apiKey'));
+    }
+
+    /**
+     * @dataProvider provideUserKeyForRequest
+     *
+     * @param RequestInterface $request
+     * @param string $userKey
+     */
+    public function testApplyAuthenticationMiddlewareOnQueryString(RequestInterface $request, string $userKey)
+    {
+        $middleware = new AuthenticationMiddleware($userKey, AuthenticationMiddleware::AUTH_QEURYSTRING);
+        $newRequest = $middleware($request);
+
         parse_str($newRequest->getUri()->getQuery(), $queryArgs);
 
         $this->assertStringContainsString($userKey, $newRequest->getUri()->getQuery());
@@ -44,8 +58,8 @@ class AuthenticationMiddlewareTest extends TestCase
 
     public function testMissingAuthenticationKey()
     {
-        $this->expectException(AuthenticationException::class);
-        $this->expectErrorMessage('No userKey for authentication given');
+        $this->expectException(AuthorizationException::class);
+        $this->expectErrorMessage('No apiKey for authorization given');
 
         $middleware = new AuthenticationMiddleware('');
         $middleware(new Request('GET', new Uri()));

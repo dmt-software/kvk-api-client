@@ -2,7 +2,7 @@
 
 namespace DMT\Test\KvK\Api\Http\Middleware;
 
-use DMT\KvK\Api\Exception\AuthenticationException;
+use DMT\KvK\Api\Exception\AuthorizationException;
 use DMT\KvK\Api\Exception\NotFoundException;
 use DMT\KvK\Api\Exception\ResponseException;
 use DMT\KvK\Api\Exception\UnavailableException;
@@ -54,7 +54,7 @@ class ExceptionMiddlewareTest extends TestCase
             [$response->withStatus(504, 'Gateway Timeout'), new UnavailableException('Gateway Timeout')],
             [$response->withStatus(404, 'Page Not Found'), new NotFoundException('No results found')],
             [$response->withStatus(429, 'Too Many Requests'), new ResponseException('Too Many Requests')],
-            [$response->withStatus(403, 'Unauthorized'), new AuthenticationException('Unauthorized')],
+            [$response->withStatus(403, 'Unauthorized'), new AuthorizationException('Unauthorized')],
         ];
     }
 }

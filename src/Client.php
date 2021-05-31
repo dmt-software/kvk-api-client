@@ -3,13 +3,16 @@
 namespace DMT\KvK\Api;
 
 use DMT\CommandBus\Validator\ValidationMiddleware;
+use DMT\KvK\Api\Http\GetCompaniesExtendedV2Handler;
 use DMT\KvK\Api\Http\Middleware\ExceptionMiddleware;
+use DMT\KvK\Api\Http\Request\GetCompaniesExtendedV2;
 use DMT\KvK\Api\Http\Request\RequestInterface;
 use DMT\KvK\Api\Http\Request\GetCompaniesBasicV2;
 use DMT\KvK\Api\Http\GetCompaniesBasicV2Handler;
 use DMT\KvK\Api\Http\HandlerInterface;
 use DMT\KvK\Api\Http\Middleware\AuthenticationMiddleware;
 use DMT\KvK\Api\Http\Response\CompanyBasicV2ResultData;
+use DMT\KvK\Api\Http\Response\CompanyExtendedV2ResultData;
 use DMT\KvK\Api\Http\Response\ResultData;
 use GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\Handler\CurlHandler;
@@ -60,7 +63,7 @@ class Client
     }
 
     /**
-     * Lookup Companies
+     * Lookup Companies.
      *
      * @param string|null $kvkNumber
      * @param string|null $branchNumber
@@ -80,7 +83,7 @@ class Client
      * @param string|null $context
      * @param string|null $q
      *
-     * @return CompanyBasicV2ResultData
+     * @return CompanyBasicV2ResultData|ResultData
      */
     public function getCompaniesBasicV2(
         string $kvkNumber = null,
@@ -124,6 +127,43 @@ class Client
     }
 
     /**
+     * Lookup company profiles.
+     *
+     * @param string|null $kvkNumber
+     * @param string|null $branchNumber
+     * @param string|null $rsin
+     * @param bool|null $includeInactiveRegistrations
+     * @param bool|null $restrictToMainBranch
+     * @param int|null $startPage
+     * @param string|null $context
+     * @param string|null $q
+     *
+     * @return CompanyExtendedV2ResultData|ResultData
+     */
+    public function getCompaniesExtendedV2(
+        string $kvkNumber = null,
+        string $branchNumber = null,
+        string $rsin = null,
+        bool $includeInactiveRegistrations = null,
+        bool $restrictToMainBranch = null,
+        int $startPage = null,
+        string $context = null,
+        string $q = null
+    ): CompanyExtendedV2ResultData {
+        $request = new GetCompaniesExtendedV2();
+        $request->kvkNumber = $kvkNumber;
+        $request->branchNumber = $branchNumber;
+        $request->rsin = $rsin;
+        $request->includeInactiveRegistrations = $includeInactiveRegistrations;
+        $request->restrictToMainBranch = $restrictToMainBranch;
+        $request->startPage = $startPage;
+        $request->context = $context;
+        $request->q = $q;
+
+        return $this->process($request);
+    }
+
+    /**
      * Execute the command
      *
      * @param RequestInterface $command
@@ -154,6 +194,10 @@ class Client
 
         if ($command === GetCompaniesBasicV2::class) {
             return new GetCompaniesBasicV2Handler($client, $this->serializer);
+        }
+
+        if ($command === GetCompaniesExtendedV2::class) {
+            return new GetCompaniesExtendedV2Handler($client, $this->serializer);
         }
 
         throw new \InvalidArgumentException('Illegal command given');
