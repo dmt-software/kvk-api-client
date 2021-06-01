@@ -1,6 +1,6 @@
 <?php
 
-namespace DMT\KvK\Api\Http\Response;
+namespace DMT\KvK\Api\Model;
 
 use JMS\Serializer\Annotation as JMS;
 

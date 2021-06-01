@@ -2,6 +2,7 @@
 
 namespace DMT\KvK\Api\Model;
 
+use DateTime;
 use JMS\Serializer\Annotation as JMS;
 
 /**
@@ -142,9 +143,9 @@ class CompanyExtendedV2
      * The date on which the branch/legal entity was founded.
      *
      * @JMS\SerializedName("foundationDate")
-     * @JMS\Type("DateTime")
+     * @JMS\Type("DateTime<'Y-m-d'>")
      *
-     * @var \DateTime
+     * @var DateTime
      */
     public $foundationDate;
 
@@ -152,9 +153,9 @@ class CompanyExtendedV2
      * The date on which the branch/legal entity was registered in its current regional Business Register.
      *
      * @JMS\SerializedName("registrationDate")
-     * @JMS\Type("DateTime")
+     * @JMS\Type("DateTime<'Y-m-d'>")
      *
-     * @var \DateTime
+     * @var DateTime
      */
     public $registrationDate;
 
@@ -162,9 +163,9 @@ class CompanyExtendedV2
      * The date on which the branch/legal entity became inactive in the Business Register.
      *
      * @JMS\SerializedName("deregistrationDate")
-     * @JMS\Type("DateTime")
+     * @JMS\Type("DateTime<'Y-m-d'>")
      *
-     * @var \DateTime
+     * @var DateTime
      */
     public $deregistrationDate;
 

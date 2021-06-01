@@ -38,7 +38,7 @@
         "isMainBranch": true,
         "employees": 10,
         "foundationDate": "20170108",
-        "registrationDate": "20170710",
+        "registrationDate": "00000000",
         "addresses": [
           {
             "type": "vestigingsadres",

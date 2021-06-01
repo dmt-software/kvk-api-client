@@ -9,8 +9,8 @@ use DMT\KvK\Api\Http\GetCompaniesExtendedV2Handler;
 use DMT\KvK\Api\Http\Request\GetCompaniesBasicV2;
 use DMT\KvK\Api\Http\Request\GetCompaniesExtendedV2;
 use DMT\KvK\Api\Http\Request\RequestInterface;
-use DMT\KvK\Api\Http\Response\CompanyBasicV2ResultData;
-use DMT\KvK\Api\Http\Response\CompanyExtendedV2ResultData;
+use DMT\KvK\Api\Http\Response\CompanyBasicV2Result;
+use DMT\KvK\Api\Http\Response\CompanyExtendedV2Result;
 use GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
@@ -41,7 +41,7 @@ class ClientTest extends TestCase
     public function testGetCompaniesBasicV2()
     {
         $this->assertInstanceOf(
-            CompanyBasicV2ResultData::class,
+            CompanyBasicV2Result::class,
             $this->client->getCompaniesBasicV2('90000102')
         );
     }
@@ -49,7 +49,7 @@ class ClientTest extends TestCase
     public function testGetCompaniesExtendedV2()
     {
         $this->assertInstanceOf(
-            CompanyExtendedV2ResultData::class,
+            CompanyExtendedV2Result::class,
             $this->client->getCompaniesExtendedV2('69599076')
         );
     }
@@ -57,7 +57,7 @@ class ClientTest extends TestCase
     public function testProcess()
     {
         $this->assertInstanceOf(
-            CompanyBasicV2ResultData::class,
+            CompanyBasicV2Result::class,
             $this->client->process(new GetCompaniesBasicV2())
         );
     }

@@ -11,9 +11,9 @@ use DMT\KvK\Api\Http\Request\GetCompaniesBasicV2;
 use DMT\KvK\Api\Http\GetCompaniesBasicV2Handler;
 use DMT\KvK\Api\Http\HandlerInterface;
 use DMT\KvK\Api\Http\Middleware\AuthenticationMiddleware;
-use DMT\KvK\Api\Http\Response\CompanyBasicV2ResultData;
-use DMT\KvK\Api\Http\Response\CompanyExtendedV2ResultData;
-use DMT\KvK\Api\Http\Response\ResultData;
+use DMT\KvK\Api\Http\Response\CompanyBasicV2Result;
+use DMT\KvK\Api\Http\Response\CompanyExtendedV2Result;
+use DMT\KvK\Api\Serializer\JsonSerializer;
 use GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\Handler\CurlHandler;
 use GuzzleHttp\HandlerStack;
@@ -49,7 +49,7 @@ class Client
     public function __construct(Config $config, SerializerInterface $serializer = null)
     {
         $this->config = $config;
-        $this->serializer = $serializer ?? (new \JMS\Serializer\SerializerBuilder())->build();
+        $this->serializer = $serializer ?? new JsonSerializer();
 
         $this->commandBus = new CommandBus([
             new LockingMiddleware(),
@@ -83,7 +83,7 @@ class Client
      * @param string|null $context
      * @param string|null $q
      *
-     * @return CompanyBasicV2ResultData|ResultData
+     * @return CompanyExtendedV2Result
      */
     public function getCompaniesBasicV2(
         string $kvkNumber = null,
@@ -103,7 +103,7 @@ class Client
         string $site = null,
         string $context = null,
         string $q = null
-    ): CompanyBasicV2ResultData {
+    ): CompanyBasicV2Result {
         $command = new GetCompaniesBasicV2();
         $command->kvkNumber = $kvkNumber;
         $command->branchNumber = $branchNumber;
@@ -138,7 +138,7 @@ class Client
      * @param string|null $context
      * @param string|null $q
      *
-     * @return CompanyExtendedV2ResultData|ResultData
+     * @return CompanyExtendedV2Result
      */
     public function getCompaniesExtendedV2(
         string $kvkNumber = null,
@@ -149,7 +149,7 @@ class Client
         int $startPage = null,
         string $context = null,
         string $q = null
-    ): CompanyExtendedV2ResultData {
+    ): CompanyExtendedV2Result {
         $request = new GetCompaniesExtendedV2();
         $request->kvkNumber = $kvkNumber;
         $request->branchNumber = $branchNumber;
@@ -167,9 +167,9 @@ class Client
      * Execute the command
      *
      * @param RequestInterface $command
-     * @return ResultData
+     * @return CompanyBasicV2Result|CompanyExtendedV2Result
      */
-    public function process(RequestInterface $command): ResultData
+    public function process(RequestInterface $command)
     {
         return $this->commandBus->handle($command);
     }
